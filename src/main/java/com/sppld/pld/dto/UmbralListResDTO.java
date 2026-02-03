@@ -39,6 +39,8 @@ public class UmbralListResDTO {
 	@JsonProperty("indEstatus")
 	private String lsIndEstatus;
 
+	@JsonProperty("indColor")
+	private String lsIndColor;
 
 	public Integer getLiIdUmbral() {
 		return liIdUmbral;
@@ -127,6 +129,16 @@ public class UmbralListResDTO {
 
 	public void setLiNumFinal(Double liNumFinal) {
 		this.liNumFinal = liNumFinal;
+	}
+
+
+	public String getLsIndColor() {
+		return lsIndColor;
+	}
+
+
+	public void setLsIndColor(String lsIndColor) {
+		this.lsIndColor = lsIndColor;
 	}
 	
 	

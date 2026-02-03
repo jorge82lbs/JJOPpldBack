@@ -30,7 +30,7 @@ public class UmbralImplDao implements UmbralDao {
 		UmbralCrudResDTO lbResult = new UmbralCrudResDTO();
         Connection loConnection = loDatasource.getDataSource().getConnection();
 		try {
-			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_CRUD_UMBRAL_PR(?,?,?,?,?,?,?,?,?)");
+			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_CRUD_UMBRAL_PR(?,?,?,?,?,?,?,?,?,?)");
 			loCallableStatement.setInt(1, loUmbralCrudReqDTO.getLiIdUmbral());
 			loCallableStatement.setInt(2, loUmbralCrudReqDTO.getLiIdApplication());
 			loCallableStatement.setInt(3, loUmbralCrudReqDTO.getLiIdCompany());
@@ -38,8 +38,9 @@ public class UmbralImplDao implements UmbralDao {
 			loCallableStatement.setDouble(5, loUmbralCrudReqDTO.getLiNumFinal());						
 			loCallableStatement.setString(6, loUmbralCrudReqDTO.getLsIndProbability());
 			loCallableStatement.setString(7, loUmbralCrudReqDTO.getLsIndImpact());
-			loCallableStatement.setString(8, loUmbralCrudReqDTO.getLsUsername());
+			loCallableStatement.setString(8, loUmbralCrudReqDTO.getLsUsername());			
 			loCallableStatement.setInt(9, loUmbralCrudReqDTO.getLiOperationType());
+			loCallableStatement.setString(10, loUmbralCrudReqDTO.getLsIndColor());
 			boolean loHasResultSet =  loCallableStatement.execute();				
 			if (loHasResultSet) {
 				ResultSet loRs = loCallableStatement.getResultSet();
@@ -97,6 +98,7 @@ public class UmbralImplDao implements UmbralDao {
 					loEnt.setLsIndProbabilty(loRs.getString("IND_PROBABILTY"));
 					loEnt.setLsIndImpact(loRs.getString("IND_IMPACT"));					
 					loEnt.setLsIndEstatus(loRs.getString("IND_ESTATUS"));
+					loEnt.setLsIndColor(loRs.getString("IND_COLOR"));
 					
 					laList.add(loEnt);
 					liI++;

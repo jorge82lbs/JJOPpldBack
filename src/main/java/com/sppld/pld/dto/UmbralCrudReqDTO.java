@@ -38,6 +38,9 @@ public class UmbralCrudReqDTO {
     
     @JsonProperty("operationType") 
     private Integer liOperationType;
+    
+    @JsonProperty("indColor") 
+    private String lsIndColor;
 
 	public Integer getLiIdApplication() {
 		return liIdApplication;
@@ -109,6 +112,14 @@ public class UmbralCrudReqDTO {
 
 	public void setLiOperationType(Integer liOperationType) {
 		this.liOperationType = liOperationType;
+	}
+
+	public String getLsIndColor() {
+		return lsIndColor;
+	}
+
+	public void setLsIndColor(String lsIndColor) {
+		this.lsIndColor = lsIndColor;
 	}
 	
 	
