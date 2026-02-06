@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sppld.pld.service.ClientPpldService;
 import com.sppld.pld.dto.ClientListResDTO;
 import com.sppld.pld.dto.ClientListReqDTO;
+import com.sppld.pld.dto.ClientReqDTO;
+import com.sppld.pld.dto.ClientResDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -44,5 +46,21 @@ public class ClientController {
         List<ClientListResDTO> laList = clientPpldService.getListClients(loClientListReqDTO);
         return new ResponseEntity<>(laList, HttpStatus.OK);        
 	}    
+    
+    @CrossOrigin(origins = URL_SERVER_FRONT)
+    @Operation(summary = "crudClientsPpld")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "QualifyFor created"),
+			@ApiResponse(responseCode = "201", description = "QualifyFor created", content = @io.swagger.v3.oas.annotations.media.Content()),
+			@ApiResponse(responseCode = "401", description = "User is not authorized for service", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ClientResDTO.class, example = "{\"OutputPushTrackingItem\":{\"Code\":\"101\",\"CodeDescription\":\"Fallido\"}}"))),
+			@ApiResponse(responseCode = "403", description = "Forbiden for user access", content = @io.swagger.v3.oas.annotations.media.Content()),
+			@ApiResponse(responseCode = "404", description = "Resource not found", content = @io.swagger.v3.oas.annotations.media.Content()),
+			@ApiResponse(responseCode = "500", description = "Internal server error", content = @io.swagger.v3.oas.annotations.media.Content()) })
+	@PostMapping("crudClientsPpld")
+    public ResponseEntity<ClientResDTO> crudClientsPpld(@RequestBody ClientReqDTO loClientReqDTO) {
+    	
+    	ClientResDTO loBean = clientPpldService.crudClientsPpld(loClientReqDTO);
+    	return new ResponseEntity<>(loBean, HttpStatus.OK);        
+
+	}
 
 }
