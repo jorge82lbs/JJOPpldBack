@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sppld.pld.dto.CatalogResponseDTO;
+import com.sppld.pld.dto.ClientDetListReqDTO;
+import com.sppld.pld.dto.ClientDetListResDTO;
 import com.sppld.pld.dto.ClientListReqDTO;
 import com.sppld.pld.dto.ClientListResDTO;
 import com.sppld.pld.dto.ClientReqDTO;
@@ -43,6 +45,17 @@ public class ClientPpldImplService implements ClientPpldService {
 			loClientResDTO.setLsCodeDescription(e.getMessage());
 		}
         return loClientResDTO;
+	}
+
+	@Override
+	public List<ClientDetListResDTO> getListClientsDet(ClientDetListReqDTO loClientListReqDTO) {
+		List<ClientDetListResDTO> laList = new ArrayList<ClientDetListResDTO>();
+		try {
+			laList = loClientsDao.getListClientsDet(loClientListReqDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return laList;
 	}
 
 }

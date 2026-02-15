@@ -17,6 +17,8 @@ import com.sppld.pld.dto.ClientListResDTO;
 import com.sppld.pld.dto.ClientListReqDTO;
 import com.sppld.pld.dto.ClientReqDTO;
 import com.sppld.pld.dto.ClientResDTO;
+import com.sppld.pld.dto.ClientDetListResDTO;
+import com.sppld.pld.dto.ClientDetListReqDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -61,6 +63,20 @@ public class ClientController {
     	ClientResDTO loBean = clientPpldService.crudClientsPpld(loClientReqDTO);
     	return new ResponseEntity<>(loBean, HttpStatus.OK);        
 
+	}
+    
+    @CrossOrigin(origins = URL_SERVER_FRONT)
+    @Operation(summary = "getListClientsDet")
+	@ApiResponses(value = { @ApiResponse(responseCode = "200", description = "Catalog created"),
+			@ApiResponse(responseCode = "201", description = "Catalog created", content = @io.swagger.v3.oas.annotations.media.Content()),
+			@ApiResponse(responseCode = "401", description = "User is not authorized for service", content = @io.swagger.v3.oas.annotations.media.Content(mediaType = "application/json", schema = @io.swagger.v3.oas.annotations.media.Schema(implementation = ClientDetListResDTO.class, example = "{\"OutputPushTrackingItem\":{\"Code\":\"101\",\"CodeDescription\":\"Fallido\"}}"))),
+			@ApiResponse(responseCode = "403", description = "Forbiden for user access", content = @io.swagger.v3.oas.annotations.media.Content()),
+			@ApiResponse(responseCode = "404", description = "Resource not found", content = @io.swagger.v3.oas.annotations.media.Content()),
+			@ApiResponse(responseCode = "500", description = "Internal server error", content = @io.swagger.v3.oas.annotations.media.Content()) })
+	@PostMapping("getListClientsDet")
+    public ResponseEntity<List<ClientDetListResDTO>> getListClientsDet(@RequestBody ClientDetListReqDTO loClientDetListReqDTO) {    	
+        List<ClientDetListResDTO> laList = clientPpldService.getListClientsDet(loClientDetListReqDTO);
+        return new ResponseEntity<>(laList, HttpStatus.OK);        
 	}
 
 }
