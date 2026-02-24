@@ -38,6 +38,9 @@ public class UserCrudReq {
 	@JsonProperty("indUsername")
 	private String lsIndUsername;
 	
+	@JsonProperty("indPassword")
+	private String lsIndPassword;
+	
 	@JsonProperty("indDescription")
 	private String lsIndDescription;
 	
@@ -57,6 +60,12 @@ public class UserCrudReq {
 	private Integer liOperationType;
 	
 	
+	public String getLsIndPassword() {
+		return lsIndPassword;
+	}
+	public void setLsIndPassword(String lsIndPassword) {
+		this.lsIndPassword = lsIndPassword;
+	}
 	public Integer getLiIdUser() {
 		return liIdUser;
 	}

@@ -25,6 +25,9 @@ public class UserListRes {
 	@JsonProperty("idCompany")
 	private Integer liIdCompany;
 	
+	@JsonProperty("nomCompany")
+	private String lsNomCompany;
+	
 	@JsonProperty("indRfc")
 	private String lsIndRfc;
 	
@@ -130,6 +133,13 @@ public class UserListRes {
 	public void setLiId(Integer liId) {
 		this.liId = liId;
 	}
+	public String getLsNomCompany() {
+		return lsNomCompany;
+	}
+	public void setLsNomCompany(String lsNomCompany) {
+		this.lsNomCompany = lsNomCompany;
+	}
+	
 	
 	
 	

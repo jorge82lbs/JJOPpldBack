@@ -42,13 +42,14 @@ public class UsersImplDao implements UsersDao {
 			System.out.println("'"+loUserCrudReq.getLsIndSecondName()+"',");
 			System.out.println("'"+loUserCrudReq.getLsIndName()+"',");
 			System.out.println("'"+loUserCrudReq.getLsIndUsername()+"',");
+			System.out.println("'"+loUserCrudReq.getLsIndPassword()+"',");
 			System.out.println("'"+loUserCrudReq.getLsIndDescription()+"',");
 			System.out.println("'"+loUserCrudReq.getLsIndEmail()+"',");
 			System.out.println("'"+loUserCrudReq.getLsIndRol()+"',");
 			System.out.println("'"+loUserCrudReq.getLsIndEstatus()+"',");
 			System.out.println("'"+loUserCrudReq.getLsUsername()+"',");
 			System.out.println(""+loUserCrudReq.getLiOperationType()+")");
-			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_CRUD_USERS_PR(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_CRUD_USERS_PR(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			loCallableStatement.setInt(1, loUserCrudReq.getLiIdUser());
 			loCallableStatement.setInt(2, loUserCrudReq.getLiIdApplication());
 			loCallableStatement.setInt(3, loUserCrudReq.getLiIdCompany());
@@ -57,12 +58,13 @@ public class UsersImplDao implements UsersDao {
 			loCallableStatement.setString(6, loUserCrudReq.getLsIndSecondName());
 			loCallableStatement.setString(7, loUserCrudReq.getLsIndName());
 			loCallableStatement.setString(8, loUserCrudReq.getLsIndUsername());
-			loCallableStatement.setString(9, loUserCrudReq.getLsIndDescription());
-			loCallableStatement.setString(10, loUserCrudReq.getLsIndEmail());
-			loCallableStatement.setString(11, loUserCrudReq.getLsIndRol());
-			loCallableStatement.setString(12, loUserCrudReq.getLsIndEstatus());			
-			loCallableStatement.setString(13, loUserCrudReq.getLsUsername());
-			loCallableStatement.setInt(14, loUserCrudReq.getLiOperationType());
+			loCallableStatement.setString(9, loUserCrudReq.getLsIndPassword());
+			loCallableStatement.setString(10, loUserCrudReq.getLsIndDescription());
+			loCallableStatement.setString(11, loUserCrudReq.getLsIndEmail());
+			loCallableStatement.setString(12, loUserCrudReq.getLsIndRol());
+			loCallableStatement.setString(13, loUserCrudReq.getLsIndEstatus());			
+			loCallableStatement.setString(14, loUserCrudReq.getLsUsername());
+			loCallableStatement.setInt(15, loUserCrudReq.getLiOperationType());
 			
 			boolean loHasResultSet =  loCallableStatement.execute();				
 			if (loHasResultSet) {
@@ -102,11 +104,13 @@ public class UsersImplDao implements UsersDao {
 		List<UserListRes> laList = new ArrayList<UserListRes>();
 		Connection loConnection = loDatasource.getDataSource().getConnection();
 		try {
-			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_GET_USERS_PR(?, ?, ?, ?)");
+			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_GET_USERS_PR(?, ?, ?, ?, ?, ?)");
 			loCallableStatement.setInt(1, loUserListReq.getLiIdUser());
 			loCallableStatement.setInt(2, loUserListReq.getLiIdApplication());
 			loCallableStatement.setInt(3, loUserListReq.getLiIdCompany());
-			loCallableStatement.setInt(4, loUserListReq.getLiOperationType());
+			loCallableStatement.setString(4, loUserListReq.getLsIndUsername());
+			loCallableStatement.setString(5, loUserListReq.getLsIndPassword());
+			loCallableStatement.setInt(6, loUserListReq.getLiOperationType());
 			
 			boolean loHasResultSet =  loCallableStatement.execute();
 			
@@ -122,6 +126,7 @@ public class UsersImplDao implements UsersDao {
 					loEnt.setLiIdUser(loRs.getInt("ID_APPLICATION"));
 					loEnt.setLiIdApplication(loRs.getInt("ID_APPLICATION"));
 					loEnt.setLiIdCompany(loRs.getInt("ID_COMPANY"));
+					loEnt.setLsNomCompany(loRs.getString("NOM_COMPANY"));
 					
 					loEnt.setLsIndRfc(loRs.getString("IND_RFC"));
 					loEnt.setLsIndFirstName(loRs.getString("IND_FIRST_NAME"));

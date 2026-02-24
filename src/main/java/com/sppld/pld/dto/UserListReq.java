@@ -22,6 +22,12 @@ public class UserListReq {
 	@JsonProperty("idCompany")
 	private Integer liIdCompany;
 	
+	@JsonProperty("indUsername")
+	private String lsIndUsername;
+	
+	@JsonProperty("indPassword")
+	private String lsIndPassword;
+	
 	@JsonProperty("operationType")
 	private Integer liOperationType;
 
@@ -56,7 +62,22 @@ public class UserListReq {
 	public void setLiOperationType(Integer liOperationType) {
 		this.liOperationType = liOperationType;
 	}
-	
+
+	public String getLsIndUsername() {
+		return lsIndUsername;
+	}
+
+	public void setLsIndUsername(String lsIndUsername) {
+		this.lsIndUsername = lsIndUsername;
+	}
+
+	public String getLsIndPassword() {
+		return lsIndPassword;
+	}
+
+	public void setLsIndPassword(String lsIndPassword) {
+		this.lsIndPassword = lsIndPassword;
+	}
 	
 
 }
