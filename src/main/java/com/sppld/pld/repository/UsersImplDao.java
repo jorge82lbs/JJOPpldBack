@@ -104,6 +104,13 @@ public class UsersImplDao implements UsersDao {
 		List<UserListRes> laList = new ArrayList<UserListRes>();
 		Connection loConnection = loDatasource.getDataSource().getConnection();
 		try {
+			System.out.println("-----------------------------------------------------------------------");
+			System.out.println("1 loUserListReq.getLiIdUser(): "+loUserListReq.getLiIdUser());
+			System.out.println("2 loUserListReq.getLiIdApplication(): "+loUserListReq.getLiIdApplication());
+			System.out.println("3 loUserListReq.getLiIdCompany(): "+loUserListReq.getLiIdCompany());
+			System.out.println("4 loUserListReq.getLsIndUsername(): "+loUserListReq.getLsIndUsername());
+			System.out.println("5 loUserListReq.getLsIndPassword(): "+loUserListReq.getLsIndPassword());
+			System.out.println("6 loUserListReq.getLiOperationType(): "+loUserListReq.getLiOperationType());
 			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_GET_USERS_PR(?, ?, ?, ?, ?, ?)");
 			loCallableStatement.setInt(1, loUserListReq.getLiIdUser());
 			loCallableStatement.setInt(2, loUserListReq.getLiIdApplication());

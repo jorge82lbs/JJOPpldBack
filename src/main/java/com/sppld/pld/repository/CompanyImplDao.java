@@ -86,10 +86,17 @@ public class CompanyImplDao implements CompanyDao {
 		List<CompanyListRes> laList = new ArrayList<CompanyListRes>();
 		Connection loConnection = loDatasource.getDataSource().getConnection();
 		try {
-			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_GET_COMPANY_PR(?, ?, ?)");
+			System.out.println("IdCompany: "+loCompanyListReq.getLiIdCompany());
+			System.out.println("IdApplication: "+loCompanyListReq.getLiIdApplication());
+			System.out.println("IndUsername: "+loCompanyListReq.getLsIndUsername());
+			System.out.println("IndRol: "+loCompanyListReq.getLsIndRol());
+			System.out.println("OperationType: "+loCompanyListReq.getLiOperationType());
+			CallableStatement loCallableStatement = loConnection.prepareCall("CALL SPPLDSAT.PLD_GET_COMPANY_PR(?, ?, ?, ?, ?)");
 			loCallableStatement.setInt(1, loCompanyListReq.getLiIdCompany());
 			loCallableStatement.setInt(2, loCompanyListReq.getLiIdApplication());			
-			loCallableStatement.setInt(3, loCompanyListReq.getLiOperationType());
+			loCallableStatement.setString(3, loCompanyListReq.getLsIndUsername());
+			loCallableStatement.setString(4, loCompanyListReq.getLsIndRol());
+			loCallableStatement.setInt(5, loCompanyListReq.getLiOperationType());
 			
 			boolean loHasResultSet =  loCallableStatement.execute();
 			
@@ -107,9 +114,8 @@ public class CompanyImplDao implements CompanyDao {
 					loEnt.setLsIndEmail(loRs.getString("IND_EMAIL"));
 					loEnt.setLsIndEstatus(loRs.getString("IND_ESTATUS"));
 					loEnt.setLsIndCreatedBy(loRs.getString("IND_CREATED_BY"));
-					
-					
-					
+										
+					System.out.println("liI: "+liI);
 					laList.add(loEnt);
 					liI++;
 				    
@@ -129,6 +135,7 @@ public class CompanyImplDao implements CompanyDao {
                 }
             }
 		}
+		System.out.println("laList.size(): "+laList.size());
 		return laList;
 	}
 

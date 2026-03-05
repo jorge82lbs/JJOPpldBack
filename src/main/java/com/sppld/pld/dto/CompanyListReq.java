@@ -19,6 +19,12 @@ public class CompanyListReq {
 	@JsonProperty("idApplication")
 	private Integer liIdApplication;
 	
+	@JsonProperty("username")
+	private String lsIndUsername;
+	
+	@JsonProperty("rol")
+	private String lsIndRol;
+	
 	@JsonProperty("operationType") 
     private Integer liOperationType;
 
@@ -36,6 +42,22 @@ public class CompanyListReq {
 
 	public void setLiIdApplication(Integer liIdApplication) {
 		this.liIdApplication = liIdApplication;
+	}
+
+	public String getLsIndUsername() {
+		return lsIndUsername;
+	}
+
+	public void setLsIndUsername(String lsIndUsername) {
+		this.lsIndUsername = lsIndUsername;
+	}
+
+	public String getLsIndRol() {
+		return lsIndRol;
+	}
+
+	public void setLsIndRol(String lsIndRol) {
+		this.lsIndRol = lsIndRol;
 	}
 
 	public Integer getLiOperationType() {
